@@ -6,6 +6,17 @@ let pokeNumber = document.querySelector("#pokeNumber");
 let search = document.querySelector("#pokename");
 let pokeImg = document.querySelector("#pokeimg");
 let form = document.querySelector(".form");
+let pokeability = document.querySelector("#ability");
+let shiny = document.querySelector("#shiny");
+
+const pokestats = {
+    "attack": document.querySelector("#atk"),
+    "special-attack": document.querySelector("#spatk"),
+    "defense": document.querySelector("#defs"),
+    "special-defense": document.querySelector("#spdefs"),
+    "speed": document.querySelector("#spd"),
+    "hp": document.querySelector("#hp")
+}
 
 let butAnt = document.querySelector("#anterior");
 let butProx = document.querySelector("#proximo");
@@ -34,10 +45,21 @@ const pokeRender = async (pokemon) => {
         pokeImg.style.display = 'block';
         pokeName.innerText = dados.name;
         pokeNumber.innerText = dados.id;
+        shiny.addEventListener("click", () => {
+            pokeImg.src = dados['sprites']['versions']['generation-v']['black-white']['animated']['front_shiny']; 
+        })
         pokeImg.src = dados['sprites']['versions']['generation-v']['black-white']['animated']['front_default']; 
         search.value = ""; 
         idPoke = dados.id;
-        console.log(idPoke);
+        pokeability.innerText = `Habilidade: ${dados.abilities[0].ability.name}`;
+        for (const element in pokestats) {
+            pokestats[element].innerText = '';
+            const statusPoke = dados.stats.find( (item) => item.stat.name === element);
+            console.log(statusPoke);
+
+            pokestats[element].innerText = statusPoke.base_stat;
+
+        }
     }
     else {
         pokeName.innerText = "Nao encontrado :c";
@@ -50,5 +72,7 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
     pokeRender(search.value.toLowerCase()); 
 });
+
+
 
 pokeRender(idPoke); 

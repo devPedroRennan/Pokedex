@@ -18,7 +18,7 @@ body {
 
 .poke_data {
     position: absolute;
-    top: 10%;
+    bottom: 80%;
 }
 
 #pokeName {
@@ -28,7 +28,7 @@ body {
 #pokeimg {
     position: absolute;
     width: 5%;
-    top: 28%;
+    top: 28%;   
     left: 47%;
 }
 
@@ -46,4 +46,14 @@ body {
     width: 100%;
     top: 45%;
     left: 49%;
+}
+
+#pokestats {
+    position: absolute;
+    width: 9%;
+    top: 48%;
+    left: 48%;
+    background-color: beige;
+    padding: 10px;
+    border-radius: 8%;
 }
